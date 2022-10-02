@@ -76,6 +76,8 @@ func writeResponse(w http.ResponseWriter, statusCode int, resp interface{}) erro
 			w.WriteHeader(http.StatusInternalServerError)
 			return err
 		}
+	} else {
+		w.Write([]byte("success"))
 	}
 	w.WriteHeader(statusCode)
 	return nil
