@@ -2,7 +2,7 @@ package lib
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"reflect"
 
@@ -21,7 +21,7 @@ func readRequestBody(r *http.Request, bodyObj interface{}) error {
 		return nil
 	}
 	defer r.Body.Close()
-	body, err := ioutil.ReadAll(r.Body)
+	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		return err
 	}
