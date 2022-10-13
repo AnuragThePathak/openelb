@@ -89,10 +89,10 @@ release: deploy
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o bin/manager-linux-arm64 github.com/openelb/openelb/cmd/manager
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -o bin/agent-linux-arm64 github.com/openelb/openelb/cmd/agent
 	CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build  -o bin/gobgp-linux-arm64 github.com/osrg/gobgp/cmd/gobgp
-	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/amd64,linux/arm64 -t ${IMG_AGENT} -f ./cmd/agent/Dockerfile .  --push
-	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/amd64,linux/arm64 -t ${IMG_MANAGER} -f ./cmd/manager/Dockerfile .  --push
-	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/amd64,linux/arm64 -t ${IMG_PROXY} -f ./images/proxy/Dockerfile . --push
-	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/amd64,linux/arm64 -t ${IMG_FORWARD} -f ./images/forward/Dockerfile . --push
+	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm64 -t ${IMG_AGENT} -f ./cmd/agent/Dockerfile .  --push
+	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm64 -t ${IMG_MANAGER} -f ./cmd/manager/Dockerfile .  --push
+	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm64 -t ${IMG_PROXY} -f ./images/proxy/Dockerfile . --push
+	DOCKER_CLI_EXPERIMENTAL=enabled docker buildx build --platform linux/arm64 -t ${IMG_FORWARD} -f ./images/forward/Dockerfile . --push
 
 install-tools:
 	echo "install kubebuilder/kustomize etc."
