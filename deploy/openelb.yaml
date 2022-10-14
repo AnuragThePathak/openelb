@@ -1186,7 +1186,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
-        image: anurag199/openelb:v0.5.1
+        image: anurag199/openelb:v0.50.0
         imagePullPolicy: IfNotPresent
         name: openelb-manager
         ports:
