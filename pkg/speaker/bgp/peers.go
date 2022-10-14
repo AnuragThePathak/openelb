@@ -125,6 +125,15 @@ func (b *Bgp) HandleBgpPeer(neighbor *bgpapi.BgpPeer, delete bool) error {
 				},
 			},
 		})
+	} else if neighbor.Spec.AfiSafis[0].Config == nil {
+		ip := net.ParseIP(neighbor.Spec.Conf.NeighborAddress)
+		if ip == nil {
+			return fmt.Errorf("field Spec.Conf.NeighborAddress invalid")
+		}
+		neighbor.Spec.AfiSafis[0].Config = &bgpapi.AfiSafiConfig{
+			Family:  defaultFamily(ip),
+			Enabled: true,
+		}
 	}
 
 	request, e := neighbor.Spec.ToGoBgpPeer()
